@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}
+      {% endblock %}
+      | Samuel Sanchez
+    </title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+</head>
+<body>
+<header>
+    <div id="logo">
+        <img src="{% static 'images/logo.png' %}">
+        <h1>Sitio Web con Django</h1>
+    </div>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/test-page">Pagina de pruebas</a></li>
+        <li><a href="/contact">Contacto</a></li>
+    </ul>
+</nav>
+<div class="bar">
+    <span class="left-corner"></span>
+    <span class="fill"></span>
+    <span class="right-corner"></span>
+</div>
+    <div id="content">
+        <div class="box">
+              <h2 class="title">Titulo prueba</h2>
+              {% block content%}
+                <strong>Contenido del bloque original</strong>
+              {% endblock %}
+        </div>
+
+    </div>
+    <footer>
+      Master en Python
+    </footer>
+</body>
+</html>

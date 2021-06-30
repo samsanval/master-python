@@ -5,11 +5,28 @@ networks:
 services:
   web:
     container_name: python
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-Django
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-    - .:/code
+    - ./django_app:/home/app/webapp
     ports:
       - 8000:8000
     networks:
       - django
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: bbdd-python
+      MYSQL_USER: samuel
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
